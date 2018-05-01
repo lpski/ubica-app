@@ -1,0 +1,39 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Summary Statistics for #{study.title}
+      a(href='/delete/' + study.id).btn.btn-danger.pull-right Delete Study
+  .container.pull-left(style={'margin-top':'20px'})
+    h5(style={'display': 'inline-block'}) Information about
+    .dropdown(style={'display': 'inline-block', 'margin-left': '7px'})
+      button.btn.btn-primary.dropdown-toggle(type='button', data-toggle='dropdown') All Teams
+      ul.dropdown-menu
+        li.dropdown-header All
+        li
+          a.dropdown-item(href='#') All Teams
+        li
+          a.dropdown-item(href='#') All Devices
+        li.divider
+
+        li.dropdown-header Teams
+        each _, i in Array(study.teamCount)
+          li
+            a.dropdown-item(href='#') Team #{i+1}
+        li.divider
+
+        li.dropdown-header Devices
+        li
+          a.dropdown-item(href='#') Device 1
+        li
+          a.dropdown-item(href='#') Device 2
+        li
+          a.dropdown-item(href='#') Device 3
+        li
+          a.dropdown-item(href='#') Device 4
+  .row
+    .col-sm-6
+      canvas(id='speaking-time', width=400,height=300)
+    .col-sm-6
+      canvas(id='interactions', width=400,height=300)
+      

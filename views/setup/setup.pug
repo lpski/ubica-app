@@ -1,0 +1,44 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Setup Study
+
+  form.form-horizontal(method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    if (unknownUser)
+      .form-group
+        label(class='col-sm-2 control-label', for='name') Name
+        .col-sm-8
+          input.form-control(type='text', name='name', id='name', autofocus=true)
+        .form-group
+        label(class='col-sm-2 control-label', for='email') Email
+        .col-sm-8
+          input.form-control(type='text', name='email', id='email')
+
+    .form-group
+      label(class='col-sm-2 control-label', for='name') Title
+      .col-sm-8
+        if study
+          input.form-control(type='text', name='name', id='name', autofocus=true, value=study.title)
+        else
+          input.form-control(type='text', name='name', id='name', autofocus=true)
+    .form-group
+      label(class='col-sm-2 control-label', for='members') Number of members
+      .col-sm-8
+        if study
+          input.form-control(type='text', name='members', id='members', value=study.memberCount)
+        else
+          input.form-control(type='text', name='members', id='members')
+    .form-group
+      label(class='col-sm-2 control-label', for='teams') Number of teams
+      .col-sm-8
+        if study
+          input.form-control(type='text', name='teams', id='teams', value=study.teamCount)
+        else
+          input.form-control(type='text', name='teams', id='teams')
+    .form-group
+      .col-sm-offset-2.col-sm-8
+        button.btn.btn-primary(type='submit')
+          i.far.fa-check.fa-sm
+          | Continue

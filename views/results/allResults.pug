@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Available Study Results
+  .row
+      each study, i in studies
+        .col-sm-6
+          a(href='/results/' + study.id).card
+              h4.card-title #{study.title}
+              p.card-text Created on : #{study.createdAt}
+

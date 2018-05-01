@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+    .page-header
+        h3 Analysis Results
+        script.
+            alert('hit');
+    .row
+        p #{waveData}
+        .col-sm-6
+            canvas(id='waveform-chart', width=400,height=100)
+    script.
+        alert(waveData);
+        

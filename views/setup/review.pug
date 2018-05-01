@@ -1,0 +1,45 @@
+extends ../layout
+
+block content
+  -var device_count = 10;
+  -var team_data = selections;
+  .page-header
+    h3 Review Team Configuration
+    .row
+        .col-sm-8
+            .panel.panel-primary
+                .panel-heading
+                    h4.panel-title Teams
+                .panel-body
+                    each arr, x in selections
+                        .well
+                            h4.card-title Team
+                                =x+1
+                            .card-body
+                                p.card-text Members:
+                                .row
+                                    .col-sm-12
+                                        .list-group.team
+                                            each val, _ in arr
+                                                .col-sm-4
+                                                    a.list-group-item.list-group-item-success.device Device 
+                                                        =val
+        .col-sm-4
+            .panel.panel-primary
+                -var device_count = 10;
+                .panel-heading
+                    h4.panel-title #{device_count} Available Devices
+                .panel-body
+                    .list-group#devicePanel
+                        each _, i in Array(device_count)
+                            .list-group-item.list-group-item-warning.list-group-item-action.deviceIndicator Device 
+                                =i+1
+    .row
+        .col-sm-6
+            button(onclick='window.history.back()').btn.btn-primary
+                i.far.fa-caret-left.fa-sm
+                | Edit Details
+        .col-sm-1.col-sm-offset-5
+            button(onclick='window.location.replace(\'/monitor/' + id + '\')').btn.btn-primary.pull-right
+                i.far.fa-check.fa-sm
+                | Begin Study 

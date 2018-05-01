@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1 Home
+  p.lead Review past studies or start a new one.
+  hr
+  .row
+    .col-sm-12
+      h2 Start a new study
+      p
+        a.btn.btn-default(href='/setup', role='button') Setup study »
+    .col-sm-12
+      h2 Review prior studies
+      .row
+        each study, i in studies.slice(0,4)
+          .col-sm-6
+            a(href='/results/' + study.id).card
+                h4.card-title #{study.title}
+                p.card-text Created on : #{study.createdAt}
+      -var temp = studies.length
+      if temp > 4
+        .row
+          .col-sm-12
+            p
+              a.btn.btn-default(href='/results', role='button') View more »

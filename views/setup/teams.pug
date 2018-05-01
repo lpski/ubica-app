@@ -1,0 +1,48 @@
+extends ../layout
+
+block content
+    -var device_count = devices;
+    .page-header
+        h3 Configure Teams for #{study.title}
+        .row
+            .col-sm-8
+                .panel.panel-primary
+                    .panel-heading
+                        h4.panel-title #{study.teamCount} Teams
+                    .panel-body
+                        -var team_count = study.teamCount;
+                        each _, i in Array(team_count)
+                            .well
+                                h4.card-title Team 
+                                    =i+1
+                                .card-body
+                                    p.card-text Members:
+                                    .row
+                                        .col-sm-12
+                                            .list-group.team
+                                                -var member_count = parseInt(members);
+                                                each device, j in devices
+                                                    .col-sm-4
+                                                        button(onclick='changeStatus(' + i + ',' + j + ')', name='d_' + i + '_' + j, type ='button').list-group-item.list-group-item-secondary.device #{device.title}
+            .col-sm-4
+                .panel.panel-primary
+                    -var device_count = 10;
+                    .panel-heading
+                        h4.panel-title #{device_count} Available Devices
+                    .panel-body
+                        .list-group#devicePanel
+                            each device, i in devices
+                                .list-group-item.list-group-item-warning.list-group-item-action.deviceIndicator #{device.title}
+                        .row
+                            .col-sm-12
+                                button.btn.btn-primary.pull-right Refresh
+        .row
+            .col-sm-6
+                form(action="/setup/configure/" + study.id, method="get")
+                    button.btn.btn-primary
+                        i.far.fa-caret-left.fa-sm
+                        | Back
+            .col-sm-1.col-sm-offset-5
+                button(onclick='validateTeamData(\'' + study.id + '\',' + parseInt(study.memberCount) + ')').btn.btn-primary.pull-right
+                    i.far.fa-check.fa-sm
+                    | Continue

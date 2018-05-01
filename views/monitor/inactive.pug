@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  if studies
+    .page-header
+      h3 Active and Paused Studies
+    .row
+        each study, i in studies
+          .col-sm-6
+            a(href='/monitor/' + study.id).card
+                h4.card-title #{study.title}
+                p.card-text Created on : #{study.createdAt}
+  else
+    .page-header
+      h3 No active studies to monitor
+

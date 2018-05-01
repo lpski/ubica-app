@@ -1,0 +1,89 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Monitor #{study.title}
+      button(onclick='location.reload()').btn.btn-primary.pull-right
+        i.far.fa-sync.fa-sm
+        | Refresh Device Status Info
+    if (study.status === 'paused')
+      aside Status: Paused
+    else
+      aside Status: Active
+    
+  .row
+    table#monitor-table.table.table-striped.table-hover.table-bordered
+      thead.thead-dark
+        tr
+          th Device
+          th Team
+          th Battery
+          th Audio
+          th Status
+      tbody
+        each team, i in study.teams
+          each did, j in team
+            - var device = devices[did];
+            tr
+              td 
+                .device-indicator(style={'background-color': device.color})
+                | #{device.title}
+              td=i
+              td #{device.battery}%
+              td
+                canvas(id='chart-' + j, width=300,height=80)
+              if (device.issue==='No Issues')
+                td.status-cell
+                  .status-indicator-pos
+                  | #{device.issue}
+              else
+                td.status-cell
+                  .status-indicator-neg
+                  | #{device.issue}
+  .spacer
+  .row(margin-top='20px', margin-bottom='40px')
+    .col-sm-6
+      if (study.status === 'paused')
+        button.btn.btn-primary.pull-left(data-toggle='modal', data-target='#resumeModal')
+          i.far.fa-pause.fa-sm
+          | Resume Study
+      else
+        button.btn.btn-primary.pull-left(data-toggle='modal', data-target='#pauseModal')
+          i.far.fa-pause.fa-sm
+          | Pause Study
+    .col-sm-6
+      button.btn.btn-primary.pull-right(data-toggle='modal', data-target='#endModal')
+        i.far.fa-stop.fa-sm
+        | End Study
+  .spacer
+    | 
+  
+  .modal.fade(id='pauseModal', tabindex='-1', role='dialog', aria-labelledby='pauseModalLabel', aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title(id='pauseLabel') Are you sure you want to pause the study?
+        .modal-footer
+          button.btn.btn-danger(data-dismiss='modal').pull-left &times; Cancel
+          form(action="../monitor/pause/" + study.id, method="get")
+            button.btn.btn-primary Confirm
+
+  .modal.fade(id='resumeModal', tabindex='-1', role='dialog', aria-labelledby='resumeModalLabel', aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title(id='resumeLabel') Are you sure you want to resume the study?
+        .modal-footer
+          button.btn.btn-danger(data-dismiss='modal').pull-left &times; Cancel
+          form(action="../monitor/resume/" + study.id, method="get")
+            button.btn.btn-primary Confirm
+
+  .modal.fade(id='endModal', tabindex='-1', role='dialog', aria-labelledby='endModalLabel', aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title(id='endLabel') Are you sure you want to end the study?
+        .modal-footer
+          button.btn.btn-danger(data-dismiss='modal').pull-left &times; Cancel
+          form(action="../monitor/end/" + study.id, method="get")
+            button.btn.btn-primary Confirm
