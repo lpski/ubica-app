@@ -41,7 +41,9 @@ mongoose.connect('mongodb://[user].documents.azure.com:[port]/[db]?ssl=true', {
 ```
 
 ### Starting the app
-To start the application run `npm start` from the folder's root directory
+To start the application run `npm start` from the folder's root directory.
+
+Once started, the app can be accessed at port 3000. If running locally, it can be found at localhost:3000.
 
 
 ## Application structure
