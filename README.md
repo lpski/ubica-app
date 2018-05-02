@@ -63,4 +63,4 @@ To start the application run `npm start` from the folder's root directory
 
 
 
-## Application TODO 
+## Application Capabilities & Future 
