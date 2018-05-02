@@ -30,7 +30,7 @@ For hosting locally:
 For remote hosting (azure example, other services will be slightly different):
 
 ```
-mongoose.connect('mongodb://[user].documents.azure.com:[port]/capstonedb?ssl=true', {
+mongoose.connect('mongodb://[user].documents.azure.com:[port]/[db]?ssl=true', {
     auth: {
       user: '[user]',
       password: '[password]'
