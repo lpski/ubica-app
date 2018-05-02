@@ -1,5 +1,8 @@
 # UBICA Web Application Structure and Setup
 
+## Summary
+This is a web app companion for the ubica hardware devices which will allow for study creation, monitoring, and analysis review.
+
 ## Application Setup 
 
 ### Prerequisites
