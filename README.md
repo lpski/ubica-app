@@ -3,19 +3,18 @@
 ## Application Setup 
 
 ### Prerequisites
- If running locally ensure you have the latest version of NodeJS, MongoDB, and npm installed
+ If running locally, ensure you have the latest version of NodeJS, MongoDB, and npm installed
 
 
 ### Install 
-* Copy entire directory to your desired location or server
-* From root directory of your chosen location run `npm install`
+* Clone repo or download to your desired location
+* From root directory of application folder run `npm install` to install app prereqs
 
 
 ### MongoDB
 Prior to attempting to start the application, ensure that MonogoDB is running
 
-* To start mongoDB enter `mongod` in terminal
-
+* To start mongoDB on macOS enter `mongod` in terminal
 
 
 ### Configuration
@@ -23,9 +22,9 @@ Prior to running the application must be configured to allow for a successful da
 
 For hosting locally:
 
-`mongoose.connect('mongodb://localhost:27017/test');`
+`mongoose.connect('mongodb://localhost:27017/ubica');`
 
-For remote hosting (azure example):
+For remote hosting (azure example, other services will be slightly different):
 
 ```
 mongoose.connect('mongodb://[user].documents.azure.com:[port]/capstonedb?ssl=true', {
@@ -61,3 +60,7 @@ To start the application run `npm start` from the folder's root directory
 **.env** Environment variables
 
 **app.js** Initializes controllers, routing, mongoDB connection, and application settings
+
+
+
+## Application TODO 

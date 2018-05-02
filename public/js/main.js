@@ -3,7 +3,6 @@ var bar_index = 0;
 var last_value = 1;
 $(document).ready(() => {
 
-
   // set up monitoring table if necessary
   if(document.title === 'Monitor') {
     $('#monitor-table').DataTable({
@@ -93,11 +92,15 @@ $(document).ready(() => {
     });
 
   } else if(document.title === 'Upload - Manual') {
+    $('#audio').on('change', function() {
+      alert('selected audio file');
+    });
+    /*
     last_value = 1;
     $("#teams").on("input", function() {
       if (this.value > last_value) {
         last_value = last_value + 1;
-        $('.teams-container').append("<div class='team-group'> <label class='col-sm-12' style='margin-top: 20px'>Team " + last_value + "</label>\
+        $('.teams-container').append("<div class='team-group'>                               <label class='col-sm-12' style='margin-top: 20px'>Team " + last_value + "</label>\
         <form-group><label class='col-sm-2 control-label' for='members-" + last_value + "'> Members </label>\
         <div class='col-sm-1'> <input class='form-control' type='number' name='members-" + last_value +"' id='members-" + last_value + "' value=1 min=1> </input> </div> </form-group>\
         <form-group> <label class='col-sm-2 control-label' for='device- " + last_value + "'> Select Device 1 </label> <div class='col-sm-9'> <dropdown style='display:inline-block' name='device-" + last_value + "'> \
@@ -107,6 +110,7 @@ $(document).ready(() => {
         $('.teams-container').children().last().remove();
       }
     });
+    */
   } else if(document.title === 'Study Results') {
 
     // set up speaking chart 
@@ -203,7 +207,6 @@ function changeStatus(team, item) {
     indicators[item].classList.remove('list-group-item-success');
     indicators[item].classList.add('list-group-item-warning');
   }
-  
 }
 
 
